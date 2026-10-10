@@ -1,5 +1,7 @@
-@import 'layout';
-@import 'fonts';
+@use 'layout';
+@use 'fonts';
+@use "mediaqueries";
+@use 'settings';
 
 #footer {
   text-align: center;
@@ -11,25 +13,25 @@
 
     p {
       padding-top: 60px;
-      font-size: $baseFont;
-      font-weight: $baseWeight;
+      font-size: fonts.$baseFont;
+      font-weight: fonts.$baseWeight;
       text-align: left;
     }
   }
 }
 
-@if $UIRefresh2022 {
+@if settings.$UIRefresh2022 {
   footer {
     margin-bottom: 40px;
 
     p {
-      @include eight-column-layout-margin;
-      font-family: $baseFontFamily;
+      @include layout.eight-column-layout-margin;
+      font-family: fonts.$baseFontFamily;
       font-weight: normal;
       margin-top: 30px;
       font-size: 16px !important;
 
-      @include media-query-large {
+      @include mediaqueries.media-query-large {
         font-size: 18px !important;
         text-align: center;
       }

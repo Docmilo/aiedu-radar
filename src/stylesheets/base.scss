@@ -1,24 +1,27 @@
-@import 'colors';
-@import 'fonts';
-@import 'tip';
-@import 'form';
-@import 'error';
-@import 'header';
-@import 'footer';
-@import 'herobanner';
-@import 'quadrantsubnav';
-@import 'search';
-@import 'alternativeradars';
-@import 'buttons';
-@import 'quadrants';
-@import 'quadrantTables';
-@import 'mediaqueries';
-@import 'layout';
-@import 'landingpage';
-@import 'loader';
-@import 'screen';
-@import 'pdfPage';
-@import 'disclaimerText';
+@use 'settings' with ($UIRefresh2022: true);
+
+@use 'colors';
+@use 'fonts';
+@use 'tip';
+@use 'form';
+@use 'error';
+@use 'header';
+@use 'footer';
+@use 'herobanner';
+@use 'quadrantsubnav';
+@use 'search';
+@use 'alternativeradars';
+@use 'buttons';
+@use 'quadrants';
+@use 'quadrantTables';
+@use 'mediaqueries';
+@use 'layout';
+@use 'landingpage';
+@use 'loader';
+@use 'screen';
+@use 'pdfPage';
+@use 'disclaimerText';
+
 
 :root {
   font-family: 'Inter', sans-serif;
@@ -34,8 +37,9 @@
   body {
     font: 18px 'Open Sans';
     opacity: 0;
-    @if $UIRefresh2022 {
-      font-family: $baseFontFamily;
+
+    @if settings.$UIRefresh2022 {
+      font-family: fonts.$baseFontFamily;
       opacity: 1;
 
       h1 {
@@ -44,19 +48,19 @@
         text-transform: none;
         letter-spacing: normal;
 
-        @include media-query-medium {
+        @include mediaqueries.media-query-medium {
           font-size: 2rem;
         }
 
-        @include media-query-large {
+        @include mediaqueries.media-query-large {
           font-size: 2.5rem;
         }
 
-        @include media-query-xxlarge {
+        @include mediaqueries.media-query-xxlarge {
           font-size: 3rem;
         }
 
-        @include media-query-xxxlarge {
+        @include mediaqueries.media-query-xxxlarge {
           font-size: 3.5rem;
         }
       }
@@ -68,43 +72,43 @@
         text-transform: none;
         letter-spacing: normal;
 
-        @include media-query-medium {
+        @include mediaqueries.media-query-medium {
           font-size: 1.25rem;
         }
 
-        @include media-query-large {
+        @include mediaqueries.media-query-large {
           font-size: 1.5rem;
         }
 
-        @include media-query-xlarge {
+        @include mediaqueries.media-query-xlarge {
           font-size: 1.5rem;
         }
 
-        @include media-query-xxlarge {
+        @include mediaqueries.media-query-xxlarge {
           font-size: 2rem;
         }
 
-        @include media-query-xxxlarge {
+        @include mediaqueries.media-query-xxxlarge {
           font-size: 2rem;
         }
       }
 
       p {
         font-size: 1rem;
-        font-family: $baseFontFamily;
+        font-family: fonts.$baseFontFamily;
 
-        @include media-query-xxlarge {
+        @include mediaqueries.media-query-xxlarge {
           font-size: 1.125rem;
         }
       }
 
       a {
-        color: $link-normal;
-        border-color: $link-normal;
+        color: colors.$link-normal;
+        border-color: colors.$link-normal;
 
         &:hover {
-          color: $link-hover;
-          border-color: $link-hover;
+          color: colors.$link-hover;
+          border-color: colors.$link-hover;
         }
       }
     }
@@ -113,13 +117,13 @@
     margin: 0;
   }
 
-  @if $UIRefresh2022 {
+  @if settings.$UIRefresh2022 {
     .d3-tip {
       font-size: 12px;
       display: block;
       padding: 12px;
-      background: $wave;
-      color: $white;
+      background: colors.$wave;
+      color: colors.$white;
       pointer-events: none;
       z-index: 20;
       max-width: 170px;
@@ -128,7 +132,7 @@
       line-height: 2;
       border-radius: unset;
 
-      @include media-query-medium {
+      @include mediaqueries.media-query-medium {
         max-width: 250px;
       }
     }
@@ -137,7 +141,7 @@
       box-sizing: border-box;
       font-size: 10px;
       width: 100%;
-      color: $wave;
+      color: colors.$wave;
       position: absolute;
       pointer-events: none;
     }

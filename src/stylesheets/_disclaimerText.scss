@@ -1,7 +1,10 @@
-@import 'colors';
-@import 'layout';
+@use 'colors';
+@use 'layout';
+@use "mediaqueries";
+@use 'settings';
+@use 'generated-config' as config;
 
-@if $UIRefresh2022 {
+@if settings.$UIRefresh2022 {
   p.landing-disclaimer-text {
     padding-top: 24px;
     font-weight: normal;
@@ -12,16 +15,16 @@
     width: 90%;
     margin-top: 20px;
 
-    @include layout-margin(1, $screen-small);
-    @include layout-margin(1, $screen-medium);
-    @include layout-margin(1, $screen-large);
-    @include layout-margin(1, $screen-xlarge);
-    @include layout-margin(1, $screen-xxlarge);
-    @include layout-margin(1, $screen-xxxlarge);
+    @include layout.layout-margin(1, mediaqueries.$screen-small);
+    @include layout.layout-margin(1, mediaqueries.$screen-medium);
+    @include layout.layout-margin(1, mediaqueries.$screen-large);
+    @include layout.layout-margin(1, mediaqueries.$screen-xlarge);
+    @include layout.layout-margin(1, mediaqueries.$screen-xxlarge);
+    @include layout.layout-margin(1, mediaqueries.$screen-xxxlarge);
   }
 }
 
-@if not $UIRefresh2022 {
+@if not settings.$UIRefresh2022 {
   p.landing-disclaimer-text {
     width: 50%;
     display: block;
@@ -35,7 +38,7 @@
   }
 }
 
-@if not $normalizeRingNameHoldToCaution {
+@if not config.$normalizeRingNameHoldToCaution {
   .show-disclaimer {
     display: none;
   }

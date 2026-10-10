@@ -1,23 +1,27 @@
-@import 'colors';
-@import 'layout';
+@use 'colors';
+@use 'layout';
+@use "fonts";
+@use "mediaqueries";
+@use 'settings';
+@use 'generated-config' as config;
 
-@if $UIRefresh2022 {
+@if settings.$UIRefresh2022 {
   .quadrant-table {
-    @include layout-margin(calc(12 / 12), $screen-small);
-    @include layout-margin(calc(12 / 12), $screen-medium);
-    @include layout-margin(calc(12 / 12), $screen-large);
-    @include layout-margin(calc(4 / 12), $screen-xlarge);
-    @include layout-margin(calc(5 / 12), $screen-xxlarge);
-    @include layout-margin(calc(5 / 12), $screen-xxxlarge);
+    @include layout.layout-margin(calc(12 / 12), mediaqueries.$screen-small);
+    @include layout.layout-margin(calc(12 / 12), mediaqueries.$screen-medium);
+    @include layout.layout-margin(calc(12 / 12), mediaqueries.$screen-large);
+    @include layout.layout-margin(calc(4 / 12), mediaqueries.$screen-xlarge);
+    @include layout.layout-margin(calc(5 / 12), mediaqueries.$screen-xxlarge);
+    @include layout.layout-margin(calc(5 / 12), mediaqueries.$screen-xxxlarge);
 
     &__ring-name {
       text-transform: none;
       margin: 0;
-      scroll-margin-top: $subnavHeight;
-      font-family: $baseFontFamily;
+      scroll-margin-top: config.$subnavHeight;
+      font-family: fonts.$baseFontFamily;
     }
 
-    @include media-query-xlarge {
+    @include mediaqueries.media-query-xlarge {
       max-width: 40%;
       margin-top: 0 !important;
     }
@@ -26,7 +30,7 @@
       display: flex;
       justify-content: center;
 
-      @include media-query-xlarge {
+      @include mediaqueries.media-query-xlarge {
         display: block;
         justify-content: unset;
       }
@@ -42,12 +46,12 @@
 
       &:hover,
       &.highlight {
-        background-color: $mist;
+        background-color: colors.$mist;
       }
 
       &-container {
         &.expand {
-          background-color: $mist;
+          background-color: colors.$mist;
         }
 
         &.expand &__name {
@@ -66,15 +70,15 @@
           width: 100%;
           border: none;
           background-color: transparent;
-          border-bottom: 1px solid $mist-s20;
+          border-bottom: 1px solid colors.$mist-s20;
           text-align: unset;
           display: flex;
           justify-content: space-between;
           align-items: center;
           cursor: pointer;
-          scroll-margin-top: $subnavHeight;
+          scroll-margin-top: config.$subnavHeight;
 
-          & > * {
+          &>* {
             pointer-events: none;
           }
 
@@ -83,9 +87,9 @@
             display: inline-block;
             width: 90%;
             font-size: 1rem;
-            font-family: $baseFontFamily;
+            font-family: fonts.$baseFontFamily;
 
-            @include media-query-large {
+            @include mediaqueries.media-query-large {
               font-size: 1.125rem;
             }
           }
@@ -95,7 +99,7 @@
             height: 8px;
             display: inline-flex;
             rotate: 45deg;
-            border: 1px solid $flamingo;
+            border: 1px solid colors.$flamingo;
             border-width: 0 2px 2px 0;
             -webkit-transition: all 0.2s ease;
             transition: all 0.2s ease;
@@ -106,14 +110,14 @@
           display: none;
           padding: 20px;
           font-size: 1rem;
-          font-family: $baseFontFamily;
+          font-family: fonts.$baseFontFamily;
           line-height: 36px;
 
-          @include media-query-large {
+          @include mediaqueries.media-query-large {
             font-size: 1.125rem;
           }
 
-          & > * {
+          &>* {
             font-family: inherit !important;
             font-size: inherit !important;
             line-height: inherit !important;

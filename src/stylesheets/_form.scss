@@ -1,9 +1,11 @@
+@use "colors";
+
 .input-sheet {
   margin: 60px auto;
 
   p {
     font-weight: 100;
-    color: $black;
+    color: colors.$black;
     font-size: 18px;
   }
 
@@ -26,7 +28,7 @@
   .input-sheet__banner {
     background-image: url('/images/tech-radar-landing-page-wide.png');
     background-repeat: no-repeat;
-    background-color: $grey-light;
+    background-color: colors.$grey-light;
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -41,12 +43,12 @@
     }
     p,
     h1 {
-      color: $white;
+      color: colors.$white;
     }
 
     a {
-      color: $white;
-      border-bottom-color: $white;
+      color: colors.$white;
+      border-bottom-color: colors.$white;
     }
   }
 
@@ -66,7 +68,7 @@
   }
 
   input[type='text'] {
-    border-bottom: 2px solid $grey-even-darker;
+    border-bottom: 2px solid colors.$grey-even-darker;
     display: block;
     font-size: 18px;
     margin-bottom: 30px;
@@ -78,7 +80,7 @@
     &:focus,
     &.focus {
       outline: none;
-      border-bottom: 2px solid $grey-even-darker;
+      border-bottom: 2px solid colors.$grey-even-darker;
       box-shadow: none;
     }
   }

@@ -9,6 +9,45 @@ const config = require('./src/config')
 const { graphConfig, uiConfig } = require('./src/graphing/config')
 
 const featureToggles = config().development.featureToggles
+
+// define scss variables to be injected into the scss files
+
+const fs = require('fs')
+const path = require('path')
+
+
+const generatedScssPath = path.resolve(
+  __dirname,
+  'src/stylesheets/_generated-config.scss'
+)
+
+const scssConfig = [
+  ...Object.entries(graphConfig).map(
+    ([key, value]) => `$${key}: ${value}px;`
+  ),
+  ...Object.entries(uiConfig).map(
+    ([key, value]) => `$${key}: ${value}px;`
+  ),
+  ...Object.entries(featureToggles).map(
+    ([key, value]) => `$${key}: ${value};`
+  ),
+]
+
+fs.writeFileSync(generatedScssPath, scssConfig.join('\n') + '\n')
+
+const settingsFile = path.resolve(
+  __dirname,
+  'src/stylesheets/_settings.scss'
+)
+
+fs.writeFileSync(
+  settingsFile,
+  Object.entries(featureToggles)
+    .map(([key, value]) => `$${key}: ${value} !default;`)
+    .join('\n') + '\n'
+)
+//
+
 const main = ['./src/site.js']
 const scssVariables = []
 
@@ -36,11 +75,14 @@ module.exports = merge(common, {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
-          'style-loader',
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: { importLoaders: 1, modules: 'global', url: false },
+            options: {
+              importLoaders: 2,
+              modules: false,
+              url: false,
+            },
           },
           {
             loader: 'postcss-loader',
@@ -58,7 +100,11 @@ module.exports = merge(common, {
           {
             loader: 'sass-loader',
             options: {
-              additionalData: scssVariables.join('\n'),
+              //additionalData: scssVariables.join('\n'),
+              additionalData: (content, loaderContext) => {
+              const settings = scssVariables.join('\n');
+                return `${settings}\n${content}`;
+              },
             },
           },
         ],

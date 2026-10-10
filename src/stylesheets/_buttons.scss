@@ -1,7 +1,9 @@
-@import 'colors';
-@import 'layout';
+@use 'colors';
+@use 'layout';
+@use "mediaqueries";
+@use 'settings';
 
-@if $UIRefresh2022 {
+@if settings.$UIRefresh2022 {
   .buttons {
     display: flex;
     flex-direction: column;
@@ -9,47 +11,47 @@
     justify-content: center;
     margin: 64px auto 56px;
 
-    @include layout-margin(calc(3 / 4), $screen-small);
-    @include layout-margin(calc(6 / 8), $screen-medium);
-    @include layout-margin(calc(8 / 12), $screen-large);
-    @include layout-margin(calc(6 / 12), $screen-xlarge);
-    @include layout-margin(calc(6 / 12), $screen-xxlarge);
-    @include layout-margin(calc(4 / 12), $screen-xxxlarge);
+    @include layout.layout-margin(calc(3 / 4), mediaqueries.$screen-small);
+    @include layout.layout-margin(calc(6 / 8), mediaqueries.$screen-medium);
+    @include layout.layout-margin(calc(8 / 12), mediaqueries.$screen-large);
+    @include layout.layout-margin(calc(6 / 12), mediaqueries.$screen-xlarge);
+    @include layout.layout-margin(calc(6 / 12), mediaqueries.$screen-xxlarge);
+    @include layout.layout-margin(calc(4 / 12), mediaqueries.$screen-xxxlarge);
 
-    @include media-query-medium {
+    @include mediaqueries.media-query-medium {
       flex-direction: row;
     }
 
     button {
       border: none;
       font-size: 20px;
-      color: $white;
+      color: colors.$white;
       width: 220px;
       height: 48px;
       margin: 0 15px 32px;
       cursor: pointer;
 
-      @include media-query-medium {
+      @include mediaqueries.media-query-medium {
         margin: 0 15px;
       }
 
       a {
         border: none;
-        color: $white;
+        color: colors.$white;
 
         &:hover {
-          color: $white;
+          color: colors.$white;
         }
       }
     }
 
     &__wave-btn {
-      background-color: $wave;
+      background-color: colors.$wave;
     }
 
     &__flamingo-btn {
-      background-color: $flamingo-s40;
-      color: $white;
+      background-color: colors.$flamingo-s40;
+      color: colors.$white;
 
       display: inline-flex;
       align-items: center;
@@ -62,7 +64,7 @@
       font-size: 20px;
 
       &:hover {
-        color: $white;
+        color: colors.$white;
       }
     }
   }

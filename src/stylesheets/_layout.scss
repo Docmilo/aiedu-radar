@@ -1,7 +1,7 @@
-@import 'mediaqueries';
+@use 'mediaqueries';
 
 @mixin layout-margin($factor, $screen-size) {
-  @if $screen-size <= $screen-medium {
+  @if $screen-size <= mediaqueries.$screen-medium {
     @media screen and (min-width: $screen-size) {
       width: calc(0.9 * $factor * 100%);
     }
@@ -16,7 +16,7 @@
   margin: auto;
   max-width: 80%;
 
-  @include media-query-large {
+  @include mediaqueries.media-query-large {
     max-width: 54%;
   }
 }

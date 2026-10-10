@@ -1,4 +1,4 @@
-@import 'colors';
+@use 'colors';
 
 @media print {
   body {
@@ -145,19 +145,19 @@
       }
 
       &.first .quadrant-table__name {
-        color: $sapphire;
+        color: colors.$sapphire;
       }
 
       &.second .quadrant-table__name {
-        color: $turmeric;
+        color: colors.$turmeric;
       }
 
       &.third .quadrant-table__name {
-        color: $jade;
+        color: colors.$jade;
       }
 
       &.fourth .quadrant-table__name {
-        color: $flamingo;
+        color: colors.$flamingo;
       }
 
       .blip-list__item {
@@ -207,7 +207,7 @@
     display: none;
     position: fixed;
     bottom: 0;
-    color: $mist-s30;
+    color: colors.$mist-s30;
     justify-content: space-between;
     width: 98%;
   }

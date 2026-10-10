@@ -1,19 +1,26 @@
+@use "colors";
+@use "fonts";
+@use "layout";
+@use "mediaqueries";
+@use 'settings';
+@use 'generated-config' as config;
+
 #radar {
   width: 80%;
   margin: 0 auto;
   position: relative;
 
-  @if $UIRefresh2022 {
+  @if settings.$UIRefresh2022 {
     width: 100%;
 
-    @include media-query-xlarge {
+    @include mediaqueries.media-query-xlarge {
       width: 80%;
-      min-width: calc($quadrantWidth * 2 + $quadrantsGap);
+      min-width: calc(config.$quadrantWidth * 2 + config.$quadrantsGap);
     }
 
-    @include layout-margin(calc(12 / 12), $screen-xlarge);
-    @include layout-margin(calc(12 / 12), $screen-xxlarge);
-    @include layout-margin(calc(12 / 12), $screen-xxxlarge);
+    @include layout.layout-margin(calc(12 / 12), mediaqueries.$screen-xlarge);
+    @include layout.layout-margin(calc(12 / 12), mediaqueries.$screen-xxlarge);
+    @include layout.layout-margin(calc(12 / 12), mediaqueries.$screen-xxxlarge);
 
     .no-blip-text {
       display: none;
@@ -24,6 +31,7 @@
 
     &.no-blips {
       height: auto !important;
+
       .no-blip-text {
         display: block;
       }
@@ -43,7 +51,7 @@
       display: none;
     }
 
-    @include media-query-xlarge {
+    @include mediaqueries.media-query-xlarge {
       &:not(.mobile) {
         display: block;
       }
@@ -57,7 +65,7 @@
     left: 0;
     right: 0;
 
-    @if $UIRefresh2022 {
+    @if settings.$UIRefresh2022 {
       display: none;
       transition: none;
 
@@ -67,7 +75,7 @@
         transition: all 1s ease;
       }
 
-      @include media-query-medium {
+      @include mediaqueries.media-query-medium {
         display: block;
       }
     }
@@ -81,16 +89,16 @@
         display: none;
       }
 
-      @include media-query-xlarge {
+      @include mediaqueries.media-query-xlarge {
         &.sticky {
           position: fixed;
           transition: none;
-          top: $subnavHeight !important;
+          top: config.$subnavHeight !important;
         }
       }
     }
 
-    @if $UIRefresh2022 {
+    @if settings.$UIRefresh2022 {
       pointer-events: none;
       z-index: 10;
     }
@@ -98,38 +106,39 @@
     .legend {
       visibility: hidden;
       transition: visibility 1s ease 1s;
-      color: $black;
+      color: colors.$black;
     }
 
     path {
       &.ring-arc-3 {
         stroke: none;
-        fill: $grey-light;
+        fill: colors.$grey-light;
       }
 
       &.ring-arc-2 {
         stroke: none;
-        fill: $grey;
+        fill: colors.$grey;
       }
 
       &.ring-arc-1 {
         stroke: none;
-        fill: $grey-dark;
+        fill: colors.$grey-dark;
       }
 
       &.ring-arc-0 {
         stroke: none;
-        fill: $grey-darkest;
+        fill: colors.$grey-darkest;
       }
     }
 
-    @if $UIRefresh2022 {
+    @if settings.$UIRefresh2022 {
       path {
+
         &.ring-arc-3,
         &.ring-arc-2,
         &.ring-arc-1,
         &.ring-arc-0 {
-          stroke: $mist-s30;
+          stroke: colors.$mist-s30;
           stroke-width: 1;
           fill: white;
         }
@@ -156,22 +165,22 @@
     polygon,
     path {
       &.first {
-        fill: $green;
+        fill: colors.$green;
         stroke: none;
       }
 
       &.second {
-        fill: $blue;
+        fill: colors.$blue;
         stroke: none;
       }
 
       &.third {
-        fill: $orange;
+        fill: colors.$orange;
         stroke: none;
       }
 
       &.fourth {
-        fill: $violet;
+        fill: colors.$violet;
         stroke: none;
       }
     }
@@ -184,39 +193,40 @@
       &.blip-text {
         font-size: 9px;
         font-style: italic;
-        fill: $white;
+        fill: colors.$white;
       }
 
       &.line-text {
         font-weight: bold;
         text-transform: uppercase;
-        fill: $black;
+        fill: colors.$black;
         font-size: 7px;
       }
     }
 
-    @if $UIRefresh2022 {
+    @if settings.$UIRefresh2022 {
+
       circle,
       polygon,
       rect,
       path {
         &.first {
-          fill: $sapphire-dark;
+          fill: colors.$sapphire-dark;
           stroke: none;
         }
 
         &.second {
-          fill: $turmeric-dark;
+          fill: colors.$turmeric-dark;
           stroke: none;
         }
 
         &.third {
-          fill: $jade-dark;
+          fill: colors.$jade-dark;
           stroke: none;
         }
 
         &.fourth {
-          fill: $flamingo-dark;
+          fill: colors.$flamingo-dark;
           stroke: none;
         }
       }
@@ -229,13 +239,13 @@
         &.blip-text {
           font-size: 9px;
           font-style: italic;
-          fill: $black;
+          fill: colors.$black;
         }
 
         &.line-text {
           font-weight: bold;
           text-transform: none;
-          fill: $black;
+          fill: colors.$black;
           font-size: 16px;
         }
       }
@@ -248,9 +258,11 @@
     }
 
     max-height: 0;
-    @if not $UIRefresh2022 {
+
+    @if not settings.$UIRefresh2022 {
       max-width: 0;
     }
+
     position: absolute;
     overflow: hidden;
     z-index: 11;
@@ -258,13 +270,14 @@
 
     h3 {
       text-transform: uppercase;
-      font-size: $baseFont;
+      font-size: fonts.$baseFont;
       margin: 0;
       font-weight: bold;
     }
 
-    @if $UIRefresh2022 {
+    @if settings.$UIRefresh2022 {
       overflow: clip;
+
       &.first {
         float: left;
       }
@@ -280,7 +293,9 @@
       &.fourth {
         float: right;
       }
-    } @else {
+    }
+
+    @else {
       &.first {
         &.selected {
           float: right;
@@ -310,12 +325,12 @@
       position: relative;
       max-height: 10000px;
 
-      @if not $UIRefresh2022 {
+      @if not settings.$UIRefresh2022 {
         max-width: 40%;
       }
     }
 
-    @if $UIRefresh2022 {
+    @if settings.$UIRefresh2022 {
       max-height: 0;
       opacity: 0;
       transition: opacity 0.3s ease-out;
@@ -324,7 +339,7 @@
         opacity: 1;
         transition: opacity 1s ease;
 
-        @include media-query-medium {
+        @include mediaqueries.media-query-medium {
           transition: opacity 1s ease 1s;
         }
       }
@@ -342,7 +357,7 @@
           padding: 2px 5px;
           border-radius: 2px;
           cursor: pointer;
-          font-size: $baseFont;
+          font-size: fonts.$baseFont;
           font-weight: 400;
 
           &.highlight {
@@ -361,7 +376,7 @@
             border-top: 1px solid rgb(119, 119, 119);
             border-bottom: 1px solid rgb(119, 119, 119);
             padding: 20px;
-            color: $grey-text;
+            color: colors.$grey-text;
             font-weight: 100;
             font-size: 14px;
           }
@@ -378,11 +393,12 @@
   }
 }
 
-@if ($UIRefresh2022) {
+@if (settings.$UIRefresh2022) {
   .radar-legends {
     display: none;
 
-    @include media-query-medium {
+    @include mediaqueries.media-query-medium {
+
       &.right-view,
       &.left-view {
         justify-content: unset;
@@ -396,10 +412,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: $quadrantsGap auto;
+      margin: config.$quadrantsGap auto;
       width: 100%;
       position: absolute;
-      top: calc($quadrantWidth * 2 + $quadrantsGap);
+      top: calc(config.$quadrantWidth * 2 + config.$quadrantsGap);
     }
 
     img:nth-child(n + 2) {
@@ -422,12 +438,15 @@
     &.show-all-quadrants-mobile {
       display: flex;
     }
-    @include media-query-medium {
+
+    @include mediaqueries.media-query-medium {
       --quadrant-btn-width-mobile: 345px;
       --quadrant-btn-height-mobile: 160px;
     }
-    @include media-query-xlarge {
+
+    @include mediaqueries.media-query-xlarge {
       display: none;
+
       &.show-all-quadrants-mobile {
         display: none;
       }
@@ -451,7 +470,7 @@
       color: white;
       border: none;
 
-      @include media-query-medium {
+      @include mediaqueries.media-query-medium {
         font-size: 24px;
       }
 
@@ -469,7 +488,7 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
 
-        @include media-query-medium {
+        @include mediaqueries.media-query-medium {
           max-width: 60%;
           max-height: 60px;
         }
@@ -477,16 +496,19 @@
     }
 
     #first-quadrant-mobile {
-      background-color: $sapphire;
+      background-color: colors.$sapphire;
     }
+
     #second-quadrant-mobile {
-      background-color: $turmeric;
+      background-color: colors.$turmeric;
     }
+
     #third-quadrant-mobile {
-      background-color: $jade;
+      background-color: colors.$jade;
     }
+
     #fourth-quadrant-mobile {
-      background-color: $flamingo;
+      background-color: colors.$flamingo;
     }
   }
 }

@@ -1,13 +1,17 @@
-@import 'colors';
-@import 'layout';
+@use 'colors';
+@use 'layout';
+@use "fonts";
+@use "mediaqueries";
+@use 'settings';
+@use 'generated-config' as config;
 
-@if $UIRefresh2022 {
+@if settings.$UIRefresh2022 {
   .graph-header {
     display: flex;
     flex-direction: column;
     height: auto;
 
-    @include media-query-large {
+    @include mediaqueries.media-query-large {
       align-items: center;
     }
   }
@@ -23,13 +27,13 @@
       margin-top: 108px;
     }
 
-    @include layout-margin(1, $screen-small);
-    @include layout-margin(calc(10 / 12), $screen-large);
-    @include layout-margin(calc(10 / 12), $screen-xlarge);
-    @include layout-margin(calc(10 / 12), $screen-xxlarge);
-    @include layout-margin(calc(8 / 12), $screen-xxxlarge);
+    @include layout.layout-margin(1, mediaqueries.$screen-small);
+    @include layout.layout-margin(calc(10 / 12), mediaqueries.$screen-large);
+    @include layout.layout-margin(calc(10 / 12), mediaqueries.$screen-xlarge);
+    @include layout.layout-margin(calc(10 / 12), mediaqueries.$screen-xxlarge);
+    @include layout.layout-margin(calc(8 / 12), mediaqueries.$screen-xxxlarge);
 
-    @include media-query-medium {
+    @include mediaqueries.media-query-medium {
       height: 48px;
       margin: 64px auto 48px;
 
@@ -38,7 +42,7 @@
       }
     }
 
-    @include media-query-large {
+    @include mediaqueries.media-query-large {
       margin: 72px auto 48px;
 
       &.sticky-offset {
@@ -46,7 +50,7 @@
       }
     }
 
-    @include media-query-xlarge {
+    @include mediaqueries.media-query-xlarge {
       margin: 32px auto;
 
       &.sticky-offset {
@@ -54,7 +58,7 @@
       }
     }
 
-    @include media-query-xxlarge {
+    @include mediaqueries.media-query-xxlarge {
       margin: 40px auto;
 
       &.sticky-offset {
@@ -63,14 +67,14 @@
     }
 
     &__input {
-      color: $wave;
+      color: colors.$wave;
       height: 48px;
       margin-bottom: 30px;
       background: #edf1f3 url(images/search-active-wave.svg) no-repeat 98% center;
-      font-family: $baseFontFamily;
-      scroll-margin-top: $subnavHeight;
+      font-family: fonts.$baseFontFamily;
+      scroll-margin-top: config.$subnavHeight;
 
-      @include media-query-medium {
+      @include mediaqueries.media-query-medium {
         height: 100%;
         margin-bottom: 0;
         flex-grow: 1;
@@ -88,16 +92,16 @@
       align-items: center;
       padding-left: 16px;
       border-bottom: 1px solid #edf1f3;
-      font-family: $baseFontFamily;
+      font-family: fonts.$baseFontFamily;
       font-size: 16px;
-      color: $black;
+      color: colors.$black;
 
       &.ui-state-active {
-        background-color: $mist !important;
-        color: $black !important;
+        background-color: colors.$mist !important;
+        color: colors.$black !important;
 
         &:active {
-          background-color: $mist-light !important;
+          background-color: colors.$mist-light !important;
         }
       }
     }

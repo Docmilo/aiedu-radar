@@ -3,10 +3,14 @@
 const webpack = require('webpack')
 const path = require('path')
 const buildPath = path.resolve(__dirname, 'dist')
-const args = require('yargs').argv
+//const args = require('yargs').argv
+const args = require('yargs/yargs')(process.argv.slice(2)).parse();
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+
+
 
 const env = args.envFile
 if (env) {
